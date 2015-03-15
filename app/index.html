@@ -1,54 +1,144 @@
-<!doctype html>
-<html lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>findtheinvisiblecow com</title>
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<!DOCTYPE html>
 
-    <!-- build:css styles/vendor.css -->
-    <!-- bower:css -->
-    <!-- endbower -->
-    <!-- endbuild -->
 
-    <!-- build:css styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
+<!-- Hi, I'm a web developer. Contact me at michael@scripti.st. -->
 
-  </head>
-  <body>
-    <!--[if lt IE 10]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
 
-    <div class="hero-unit">
-      <h1>'Allo, 'Allo!</h1>
-      <p>You now have</p>
-      <ul>
-        <li>HTML5 Boilerplate</li>
-        <li>Sass</li>
-      </ul>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if IE 8]> <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+<head>
+
+  <!-- Meta -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta name="description" content="Because it ain't gonna find itself.">
+
+  <title>Find the Invisible Cow</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/styles/main.css?v=1">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Find the Invisible Cow"/>
+  <meta property="og:url" content="http://findtheinvisiblecow.com"/>
+  <meta property="og:image" content="http://findtheinvisiblecow.com/images/og-image.png"/>
+  <meta property="og:description" content="Because it ain't gonna find itself."/>
+
+</head>
+<body>
+  <div id="animal"></div>
+
+  <div id="stats"></div>
+
+  <div id="modal-welcome">
+    <h1>Find the Invisible&nbsp;Cow</h1>
+    <p id="quote"></p>
+    <p>Move your cursor around to find the cow. It's hiding behind the shouting.</p>
+    <p class="important">Make sure you turn your audio on before playing.</p>
+
+    <div id="loader" class="loading"></div>
+
+    <p class="note">If you do not hear anything, it's possible that your browser does not support the Web Audio API. Currently supported browsers are <a href="http://google.com/chrome" target="_blank">Chrome 10+</a>, <a href="http://www.mozilla.org/en-US/firefox/new/" target="_blank">Firefox 25+</a>, <a href="http://www.opera.com/" target="_blank">Opera 15+</a>, and <a href="http://www.apple.com/au/safari/" target="_blank">Safari 6+</a>.</p>
+  </div>
+
+  <div id="modal-no-audio">
+    <h1>This is a web experiment</h1>
+    <p>Sorry, your browser does not support the Web Audio API, which is an integral part of this experiment.</p>
+    <p>Currently supported browsers are <a href="http://google.com/chrome" target="_blank">Chrome 10+</a>, <a href="http://www.mozilla.org/en-US/firefox/new/" target="_blank">Firefox 25+</a>, <a href="http://www.opera.com/" target="_blank">Opera 15+</a>, and <a href="http://www.apple.com/au/safari/" target="_blank">Safari 6+</a>.</p>
+  </div>
+
+  <div id="modal-congratulations">
+    <h1>Congratulations</h1>
+    <p>You found one!</p>
+    <p>&nbsp;</p>
+    <p><label><input type="checkbox" data-expertMode>Expert Mode <span class="grey">(your cursor won't change when you hover over the cow)</span></label></p>
+    <div data-donated="0">
+      <div data-points-max="4">
+        <p><label>
+          Find a
+          <select data-animal>
+            <option value="cow" selected>Cow</option>
+          </select>
+          <small>Get to <strong>five points</strong> to unlock another animal!</small>
+        </label></p>
+      </div>
+      <div data-points-min="5">
+        <p><label>
+          Find a
+          <select data-animal>
+            <option value="cow" selected>Cow</option>
+            <option value="goat">Goat</option>
+          </select>
+          <small><strong>Congratulations! You have unlocked the goat!</strong></small>
+        </label></p>
+      </div>
+    </div>
+    <div data-donated="1">
+      <p><label>
+        Find a
+        <select data-animal>
+          <option value="cow" selected>Cow</option>
+          <option value="goat">Goat</option>
+          <option value="fox">Fox</option>
+        </select>
+      </label></p>
+    </div>
+    <button onclick="find.gameStart();">Find Another One</button>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Ffindtheinvisiblecow.com" target="_blank" class="button secondary" onclick="find.track2('Social', Share - Facebook');">Share on Facebook</a>
+    <button class="tertiary beer" onclick="find.modal.open('beer');find.track2('Donate', 'ModalOpen');">Unlock the Fox</button>
+  </div>
+
+  <div id="modal-beer">
+    <h1>Buy me a beer <small>&amp; unlock the fox</small></h1>
+    <p>G'day Cow-Finders.</p>
+    <p>I'm <a href="http://scripti.st" target="_blank">Michael Berman</a>, an Aussie web dude, and I make stupid shit like this to please internet-folk like you.</p>
+    <p>If you like the game, I&apos;d <strong>really</strong> appreciate it if you'd send a little donation my way.</p>
+    <p>&nbsp;</p>
+    <p>As an added bonus, donating will automatically unlock one more animal - <strong>the fox</strong>.</p>
+    <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=mikeyberman%40gmail%2ecom&lc=US&item_name=Michael%20Berman&amount=2%2e00&currency_code=USD&no_note=0&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest" target="_blank" class="button" onclick="find.track2('Donate', 'PaypalButton - $2');find.stats.donated = 1;find.save();">Donate $2</a>
+    <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=mikeyberman%40gmail%2ecom&lc=US&item_name=Michael%20Berman&amount=5%2e00&currency_code=USD&no_note=0&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest" target="_blank" class="button" onclick="find.track2('Donate', 'PaypalButton');find.stats.donated = 1;find.save();">Donate $5</a>
+    <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=mikeyberman%40gmail%2ecom&lc=US&item_name=Michael%20Berman&amount=30%2e00&currency_code=USD&no_note=0&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest" target="_blank" class="button" onclick="find.track2('Donate', 'PaypalButton - Case');find.stats.donated = 1;find.save();">Donate $30</a>
+    <button class="secondary" onclick="find.gameStart();">Find Another Cow</button>
+  </div>
+
+  <div id="footer">
+    <div class="credit">
+      By <a href="http://scripti.st" target="_blank">Scriptist</a>
     </div>
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='//www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
-    </script>
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style ">
+    <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:href="https://www.facebook.com/findtheinvisiblecow"></a>
+    <a class="addthis_button_tweet"></a>
+    <a class="addthis_button_pinterest_pinit"></a>
+    <a class="addthis_counter addthis_pill_style"></a>
+    </div>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5042bf8c0a739040"></script>
+    <!-- AddThis Button END -->
+  </div>
 
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
 
-        <!-- build:js scripts/main.js -->
-        <script src="scripts/main.js"></script>
-        <!-- endbuild -->
+  <noscript>
+    <div class="noscript">
+      Looks like you've disabled JavaScript.<br /><br />No cows for you :(
+    </div>
+  </noscript>
+
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-4285706-16', 'findtheinvisiblecow.com');
+    ga('send', 'pageview');
+
+  </script>
+  <script src="/scripts/main.js"></script>
+
 </body>
 </html>

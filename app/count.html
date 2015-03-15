@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Total - Find The Invisible Cow</title>
+
+	<meta property="og:title" content="Total - Find the Invisible Cow"/>
+	<meta property="og:url" content="http://findtheinvisiblecow.com/count"/>
+	<meta property="og:image" content="http://findtheinvisiblecow.com/images/og-image.png"/>
+	<meta property="og:description" content="Want to keep tabs on how many cows have been found so far?"/>
+
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+	<style>
+		html {
+			font-family: 'Open Sans', sans-serif;
+			font-weight: 300;
+		}
+		#count {
+			font-size: 5em;
+			margin-top: -.5em;
+			text-align: center;
+
+			position: absolute;
+			top: 30%;
+			top: 40vh;
+			right: 0;
+			left: 0;
+		}
+
+		#count:before {
+			content: 'Total animals found';
+			display: block;
+			font-size: 0.8rem;
+		}
+
+		.linkback {
+			position: absolute;
+			top: 5px;
+			right: 8px;
+
+			color: #aaa;
+		}
+
+		.linkback:hover {
+			color: #333;
+		}
+	</style>
+	<script>
+
+		var refreshInterval = 5000,
+			lastCount;
+
+		var intervalId = setInterval(go, refreshInterval);
+		go();
+
+		function go() {
+			getCount(function(count) {
+				if (typeof count != 'number' || count < 6200000) {
+					clearInterval(intervalId);
+					document.getElementById('count').innerText = 'Error';
+					return alert('Error occured. Try again later.');
+				}
+
+				var d = count - lastCount;
+				if (!lastCount || !d) {
+					lastCount = count;
+					return displayCount(count);
+				}
+
+				var update = function() {
+					if (count > lastCount) {
+						displayCount(++lastCount);
+					}
+				}
+
+				var i = setInterval(update, refreshInterval/d);
+				update();
+
+				setTimeout(function() {
+					clearInterval(i);
+				}, refreshInterval - refreshInterval/d);
+			});
+		}
+
+		function displayCount(count) {
+			document.getElementById('count').innerText = numberFormat(count);
+		}
+
+		function getCount(callback) {
+			var type = 'GET';
+
+
+			var xhr = createCORSRequest(type, 'https://api.mongolab.com/api/1/databases/ftic/collections/count/52fea714e4b056266d60bd3a?apiKey=zq2DUayEFGTLl08aGo8tICf8Ywy6K_Y_');
+			if (!xhr){
+				return console.error('CORS not supported');
+			}
+
+			xhr.send();
+
+			/*SUCCESS -- do somenthing with data*/
+			xhr.onload = function(){
+				var data = JSON.parse(xhr.responseText);
+				callback(data.count);
+			};
+
+			xhr.onerror = function(e){
+				console.error(e);
+			};
+		}
+
+		function createCORSRequest(method, url) {
+			var xhr = new XMLHttpRequest();
+			if ("withCredentials" in xhr) {
+
+				// Check if the XMLHttpRequest object has a "withCredentials" property.
+				// "withCredentials" only exists on XMLHTTPRequest2 objects.
+				xhr.open(method, url, true);
+
+			} else if (typeof XDomainRequest != "undefined") {
+
+				// Otherwise, check if XDomainRequest.
+				// XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+				xhr = new XDomainRequest();
+				xhr.open(method, url);
+
+			} else {
+
+				// Otherwise, CORS is not supported by the browser.
+				xhr = null;
+
+			}
+			return xhr;
+		}
+
+		function numberFormat(x) {
+			if (x)
+				return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			else
+				return '0';
+		}
+	</script>
+</head>
+<body>
+	<div id="count">Loading...</div>
+	<a href="/" class="linkback">Find more cows</a>
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-4285706-16', 'findtheinvisiblecow.com');
+		ga('send', 'pageview');
+
+	</script>
+</body>
+</html>
