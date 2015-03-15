@@ -22,6 +22,14 @@ h1, h2, h3, h4, h5 {
 
 p {
   margin: 0.8em 0;
+
+  &.important {
+    background: rgba(#fdd, 0.5);
+    border: 1px solid;
+    color: #b44;
+    display: inline-block;
+    padding: 0.8em 1em;
+  }
 }
 
 strong {
