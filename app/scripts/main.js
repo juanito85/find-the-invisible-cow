@@ -272,7 +272,7 @@ var find = (function() {
 		},
 		setTotal: function(data) {
 			var i = parseInt(data.count);
-			if (i && i > 14000000 && i < 30000000)
+			if (i && i > 14e6 && i < 30e6)
 				f.stats.total = i;
 			f.updateStats();
 		},
