@@ -225,59 +225,10 @@ $padding: 1em;
 
 #stats {
   position: absolute;
-  top: $padding;
-  right: $padding;
+  top: 1rem;
+  right: 1rem;
+
   z-index: 1;
-
-  .feedback, .total {
-    border-bottom: 1px solid #eee;
-    color: #ccc;
-    font-size: 0.8em;
-    margin-right: 0.4em;
-    padding-bottom: 0.2em;
-    text-align: right;
-  }
-
-  .feedback {
-    a {
-      color: inherit;
-      text-decoration: inherit;
-      &:hover {
-        color: #666;
-        text-decoration: underline;
-      }
-    }
-  }
-
-  .total {
-    &:before {
-      content: 'Cows found globally: ';
-    }
-  }
-
-  .points {
-    color: #ccc;
-    font-size: 4em;
-    font-weight: 300;
-    margin-top: 0;
-    text-align: right;
-
-    &:before {
-      content: 'Your Points';
-      display: block;
-      font-size: 0.2em;
-      margin-bottom: -1.5em;
-      margin-right: 0.4em;
-    }
-  }
-
-  .more .key {
-    display: inline-block;
-    font-weight: bold;
-    text-transform: capitalize;
-    width: 5em;
-  }
-
 
   @media (max-width: 570px) {
     .modalOpen & {

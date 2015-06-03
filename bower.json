@@ -2,6 +2,7 @@
   "name": "findtheinvisiblecow-com",
   "private": true,
   "dependencies": {
-    "jquery": "~2.1.1"
+    "jquery": "~2.1.1",
+    "polymer": "Polymer/polymer#1.0.0"
   }
 }

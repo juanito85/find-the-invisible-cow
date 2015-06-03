@@ -47,7 +47,7 @@ var find = (function() {
 			started: false,
 			wins: 0,
 			points: 0,
-			total: null,
+			total: undefined,
 			startedAt: null,
 			seenPromo: 1,
 			lastSecondsTaken: null
@@ -239,24 +239,9 @@ var find = (function() {
 		updateStats: function() {
 			if (!f.stats.elm)
 				return false;
-			var html = '';
-			html += '<div class="feedback"><a href="https://twitter.com/intent/tweet?text=www.FindTheInvisibleCow.com%20by%20@scriptist" target="_blank">Send feedback with twitter</a></div>';
-			if (f.stats.total)
-				html += '<div class="total">' + f.numberFormat(f.stats.total) + '</div>';
-			else
-				html += '<div class="total">' + '9,100,000+' + '</div>';
-			html += '<div class="points">' + f.numberFormat(f.stats.points) + '</div>';
-			if (f.settings.stats) {
-				html += '<div class="more">';
-				for (key in f.stats) {
-					if (key != 'elm') {
-						var val = f.stats[key];
-						html += '<span class="key">' + key + ':</span> ' + val + '<br />';
-					}
-				};
-				html += '</div>';
-			}
-			f.stats.elm.innerHTML = html;
+
+			f.stats.elm.globalPoints = f.stats.total;
+			f.stats.elm.userPoints = f.stats.points;
 
 			f.save();
 		},
@@ -314,12 +299,6 @@ var find = (function() {
 			var elm = document.createElement('script');
 			elm.src = url;
 			document.head.appendChild(elm);
-		},
-		numberFormat: function(x) {
-			if (x)
-				return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			else
-				return '0';
 		},
 		save: function() {
 			if (!localStorage)
