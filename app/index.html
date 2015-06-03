@@ -29,6 +29,7 @@
 	<!-- Polymer -->
 	<script src="/bower_components/webcomponentsjs/webcomponents.min.js"></script>
 	<link rel="import" href="/elements/cow-animal.html">
+	<link rel="import" href="/elements/cow-donate.html">
 	<link rel="import" href="/elements/cow-quote.html">
 	<link rel="import" href="/elements/cow-selector.html">
 	<link rel="import" href="/elements/cow-stats.html">
@@ -76,9 +77,10 @@
 		<p>If you like the game, I&apos;d <strong>really</strong> appreciate it if you'd send a little donation my way.</p>
 		<p>&nbsp;</p>
 		<p>As an added bonus, donating will automatically unlock one more animal - <strong>the fox</strong>.</p>
-		<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=mikeyberman%40gmail%2ecom&lc=US&item_name=Michael%20Berman&amount=2%2e00&currency_code=USD&no_note=0&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest" target="_blank" class="button" onclick="find.track2('Donate', 'PaypalButton - $2');find.stats.donated = 1;find.save();">Donate $2</a>
-		<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=mikeyberman%40gmail%2ecom&lc=US&item_name=Michael%20Berman&amount=5%2e00&currency_code=USD&no_note=0&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest" target="_blank" class="button" onclick="find.track2('Donate', 'PaypalButton');find.stats.donated = 1;find.save();">Donate $5</a>
-		<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=mikeyberman%40gmail%2ecom&lc=US&item_name=Michael%20Berman&amount=30%2e00&currency_code=USD&no_note=0&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest" target="_blank" class="button" onclick="find.track2('Donate', 'PaypalButton - Case');find.stats.donated = 1;find.save();">Donate $30</a>
+
+		<a is="cow-donate" amount="2" class="button"></a>
+		<a is="cow-donate" amount="5" class="button"></a>
+		<a is="cow-donate" amount="20" class="button"></a>
 		<button class="secondary" onclick="find.gameStart();">Find Another Cow</button>
 	</div>
 

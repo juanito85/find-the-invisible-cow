@@ -1,0 +1,31 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+
+<dom-module id="cow-donate">
+<style>
+</style>
+<template>
+	Donate $<span>{{amount}}</span>
+</template>
+</dom-module>
+
+<script>
+	Polymer({
+		is: "cow-donate",
+		extends: 'a',
+		ready: function() {
+			this.href = 'https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=mikeyberman%40gmail%2ecom&lc=US&item_name=Michael%20Berman&amount=' + this.amount + '%2e00&currency_code=USD&no_note=0&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest';
+			this.target = '_blank';
+			this.addEventListener('click', function() {
+				find.track2('Donate', 'PaypalButton - ' + this.amount);
+				find.stats.donated = 1;
+				find.save();
+			}.bind(this));
+		},
+		properties: {
+			amount: {
+				type: Number,
+				value: 5
+			}
+		}
+	});
+</script>
