@@ -47,19 +47,6 @@ var find = (function() {
 			startedAt: null,
 			lastSecondsTaken: null
 		},
-		quotes: [
-			'Damn. Can\'t believe I played more than once.',
-			'Find the Invisible Cow is the new high-water mark for next-gen gaming',
-			'On a scale of 1 to 10, I really enjoy this website.',
-			'Greatest website ever? Yes. Greatest website ever. ',
-			'The greatest thing since apple cider and donuts',
-			'A masterpiece of the internet...',
-			'It\'s obnoxious and wonderful and I love it.',
-			'I played with my eyes closed. Way more fun that way.',
-			'humanity has peaked. this is it. right here.',
-			'I\'ve been playing this game for half an hour what is wrong with me???',
-			'So simple. So inspiring. Thank you.'
-		],
 		init: function() {
 			// Check for compatibility
 			var is_ios = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
@@ -93,12 +80,6 @@ var find = (function() {
 
 			// Find elements
 			f.animal.elm = document.getElementById('animal');
-
-			// Add quote
-			var quoteElm = document.getElementById('quote'),
-				randomQuote = f.quotes[Math.floor(Math.random() * f.quotes.length)];
-			if (quoteElm)
-				quoteElm.innerText = randomQuote;
 
 			// Open welcome modal
 			f.modal.open('welcome');

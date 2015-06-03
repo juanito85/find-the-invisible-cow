@@ -28,8 +28,9 @@
 
 	<!-- Polymer -->
 	<script src="/bower_components/webcomponentsjs/webcomponents.min.js"></script>
-	<link rel="import" href="/elements/cow-stats.html">
 	<link rel="import" href="/elements/cow-animal.html">
+	<link rel="import" href="/elements/cow-quote.html">
+	<link rel="import" href="/elements/cow-stats.html">
 
 </head>
 <body>
@@ -40,7 +41,7 @@
 
 	<div id="modal-welcome">
 		<h1>Find the Invisible&nbsp;Cow</h1>
-		<p id="quote"></p>
+		<cow-quote id="quote"></cow-quote>
 		<p>Move your cursor around to find the cow. It's hiding behind the shouting.</p>
 		<p class="important">Make sure you turn your audio on before playing.</p>
 
