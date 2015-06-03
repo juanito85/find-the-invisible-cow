@@ -136,37 +136,7 @@ $padding: 1em;
 #animal {
   display: none;
   position: absolute;
-
-  background: url(/images/cow-sprite.png);
-  background-position: 0 0;
-  background-repeat: no-repeat;
-  background-size: cover;
-  transition: width 0.5s, height 0.5s, left 0.5s, top 0.5s;
-
-  height: 233px;
-  width: 320px;
-
-  top: 30%;
-  left: -webkit-calc(50% - 320px/2);
-  left: calc(50% - 320px/2);
-
-  z-index: 1;
-
-  &.small {
-    height: 58px;
-    width: 80px;
-  }
-  &.moo {
-    background-position: 0 -233px;
-  }
-
-  &[data-animal="goat"] {
-    background-image: url(/images/goat-sprite.png);
-  }
-
-  &[data-animal="fox"], &.moo[data-animal="fox"] {
-    background-image: url(/images/fox-sprite.png);
-  }
+  z-index: 2;
 }
 
 [id^=modal-], .noscript {

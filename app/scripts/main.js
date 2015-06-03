@@ -5,9 +5,6 @@ var find = (function() {
 			size: {
 				x: 80, y: 58
 			},
-			sizeBig: {
-				x: 320, y: 233
-			},
 			pos: {
 				x: null, y: null
 			},
@@ -160,7 +157,7 @@ var find = (function() {
 				return console.error('Error: No such animal (', animal, ')');
 
 			f.settings.animal = animal;
-			f.animal.elm.setAttribute('data-animal', animal);
+			f.animal.elm.type = animal;
 		},
 		addPoint: function(win) {
 			f.stats.points++;
@@ -182,23 +179,23 @@ var find = (function() {
 		},
 		moo: function(callback) {
 			var elm = f.animal.elm;
-			elm.classList.add('small');
-			elm.style.left = f.animal.pos.x - f.animal.size.x/2 + 'px';
-			elm.style.top  = f.animal.pos.y - f.animal.size.y/2 + 'px';
+			elm.style.left = f.animal.pos.x + 'px';
+			elm.style.top  = f.animal.pos.y + 'px';
+			elm.small = true;
 			elm.style.display = 'block';
 
 			setTimeout(function() {
-				elm.classList.remove('small');
+				elm.small = false;
 				elm.style.left = null;
 				elm.style.top = null;
 			}, 100);
 
 			setTimeout(function() {
 				f.audio.moo();
-				elm.classList.add('moo');
+				elm.moo = true;
 			}, f.animals[f.settings.animal].mooDelay);
 			setTimeout(function() {
-				elm.classList.remove('moo');
+				elm.moo = false;
 			}, 1400);
 
 			setTimeout(function() {

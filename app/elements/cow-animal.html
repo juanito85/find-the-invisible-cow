@@ -1,0 +1,70 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+
+<dom-module id="cow-animal">
+<style>
+:host {
+	transition: left 0.5s, top 0.5s;
+
+	/* Center position */
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	top: 50%;
+	left: 50%;
+}
+
+.image {
+	transition: transform 0.5s;
+
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	background-size: cover;
+
+	height: 233px;
+	width: 320px;
+}
+
+.image[data-small] {
+	-webkit-transform: scale(0.25);
+	transform: scale(0.25);
+}
+
+.image[data-moo] {
+	background-position: 0 -233px;
+}
+
+.image[data-type="cow"] {
+	background-image: url(/images/cow-sprite.png);
+}
+
+.image[data-type="goat"] {
+	background-image: url(/images/goat-sprite.png);
+}
+
+.image[data-type="fox"] {
+	background-image: url(/images/fox-sprite.png);
+}
+</style>
+<template>
+	<div class="image" data-type$="{{type}}" data-moo$="{{moo}}" data-small$="{{small}}"></div>
+</template>
+</dom-module>
+
+<script>
+	Polymer({
+		is: "cow-animal",
+		properties: {
+			type: {
+				type: String,
+				value: 'cow'
+			},
+			moo: {
+				type: Boolean,
+				value: false
+			},
+			small: {
+				type: Boolean,
+				value: false
+			}
+		}
+	});
+</script>
