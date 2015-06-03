@@ -89,7 +89,7 @@ var find = (function() {
 
 			// Open welcome modal
 			f.modal.open('welcome');
-			f.audio.showLoader('loader', '<button onclick="find.gameStart();">Start Game</button>');
+			f.audio.showLoader('loader', '<button is="cow-start"></button>');
 
 			// Update stats
 			f.stats.elm = document.getElementById('stats');

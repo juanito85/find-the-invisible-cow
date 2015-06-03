@@ -32,6 +32,7 @@
 	<link rel="import" href="/elements/cow-donate.html">
 	<link rel="import" href="/elements/cow-quote.html">
 	<link rel="import" href="/elements/cow-selector.html">
+	<link rel="import" href="/elements/cow-start.html">
 	<link rel="import" href="/elements/cow-stats.html">
 
 </head>
@@ -65,7 +66,7 @@
 		<p><label><input type="checkbox" data-expertMode>Expert Mode <span class="grey">(your cursor won't change when you hover over the cow)</span></label></p>
 
 		<cow-selector></cow-selector>
-		<button onclick="find.gameStart();">Find Another One</button>
+		<button is="cow-start" text="Find Another One"></button>
 		<a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Ffindtheinvisiblecow.com" target="_blank" class="button secondary" onclick="find.track2('Social', Share - Facebook');">Share on Facebook</a>
 		<button class="tertiary beer" onclick="find.modal.open('beer');find.track2('Donate', 'ModalOpen');">Unlock the Fox</button>
 	</div>

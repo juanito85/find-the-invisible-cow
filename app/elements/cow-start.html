@@ -1,0 +1,26 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+
+<dom-module id="cow-start">
+<template>
+	<span>{{text}}</span>
+</template>
+</dom-module>
+
+<script>
+	Polymer({
+		is: "cow-start",
+		extends: 'button',
+		properties: {
+			text: {
+				type: String,
+				value: 'Start Game'
+			}
+		},
+		listeners: {
+			'click': 'startGame'
+		},
+		startGame: function(x) {
+			find.gameStart();
+		}
+	});
+</script>
