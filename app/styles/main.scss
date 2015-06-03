@@ -1,226 +1,226 @@
 * {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 html, body {
-  color: #333;
-  font-family: 'Open Sans', sans-serif;
+	color: #333;
+	font-family: 'Open Sans', sans-serif;
 
-  margin: 0;
-  padding: 1px !important;
+	margin: 0;
+	padding: 1px !important;
 
-  height: 100%;
-  width: 100%;
+	height: 100%;
+	width: 100%;
 }
 
 h1, h2, h3, h4, h5 {
-  margin: 0 0 0.5em;
-  font-weight: 300;
+	margin: 0 0 0.5em;
+	font-weight: 300;
 }
 
 p {
-  margin: 0.8em 0;
+	margin: 0.8em 0;
 
-  &.important {
-    background: rgba(#fdd, 0.5);
-    border: 1px solid;
-    color: #b44;
-    display: inline-block;
-    padding: 0.8em 1em;
-  }
+	&.important {
+		background: rgba(#fdd, 0.5);
+		border: 1px solid;
+		color: #b44;
+		display: inline-block;
+		padding: 0.8em 1em;
+	}
 }
 
 strong {
-  opacity: 0.9;
+	opacity: 0.9;
 }
 
 label {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 .grey {
-  font-size: 0.8em;
-  opacity: 0.8;
+	font-size: 0.8em;
+	opacity: 0.8;
 }
 
 .update {
-  color: red;
-  margin-top: 3em;
+	color: red;
+	margin-top: 3em;
 }
 
 button, .button {
-  $color: #4682B4;
-  background: $color;
-  border: 1px solid darken($color, 15);
-  color: white;
-  cursor: pointer;
-  display: inline-block;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1.5em;
-  font-weight: bold;
-  margin: 0.5em 0 0;
-  padding: 0.5em 1em 0.6em;
-  text-decoration: none;
+	$color: #4682B4;
+	background: $color;
+	border: 1px solid darken($color, 15);
+	color: white;
+	cursor: pointer;
+	display: inline-block;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.5em;
+	font-weight: bold;
+	margin: 0.5em 0 0;
+	padding: 0.5em 1em 0.6em;
+	text-decoration: none;
 
-  transition: background 0.3s, color 0.3s;
+	transition: background 0.3s, color 0.3s;
 
-  &:hover {
-    background: darken($color, 10);
-  }
+	&:hover {
+		background: darken($color, 10);
+	}
 
-  &.secondary {
-    background: mix(white, $color, 70);
-    border-color: mix(white, $color, 40);
-    color: $color;
+	&.secondary {
+		background: mix(white, $color, 70);
+		border-color: mix(white, $color, 40);
+		color: $color;
 
-    &:hover {
-      background: mix(white, $color, 50);
-      color: darken($color, 15);
-    }
-  }
+		&:hover {
+			background: mix(white, $color, 50);
+			color: darken($color, 15);
+		}
+	}
 
-  &.tertiary {
-    background: #ccc;
-    border-color: #aaa;
-    color: #666;
-    font-size: 1em;
+	&.tertiary {
+		background: #ccc;
+		border-color: #aaa;
+		color: #666;
+		font-size: 1em;
 
-    &:hover {
-      background: #aaa;
-      border-color: #888;
-      color: black;
-    }
-  }
+		&:hover {
+			background: #aaa;
+			border-color: #888;
+			color: black;
+		}
+	}
 
-  &.small {
-    font-size: 1em;
-  }
+	&.small {
+		font-size: 1em;
+	}
 }
 
 #footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
 
-  background: #eee;
-  text-align: center;
-  border-top: 1px solid #ccc;
-  padding: 0.5em 0.5em 0;
+	background: #eee;
+	text-align: center;
+	border-top: 1px solid #ccc;
+	padding: 0.5em 0.5em 0;
 
-  .addthis_toolbox {
-    display: inline-block;
-    min-width: 350px;
-  }
+	.addthis_toolbox {
+		display: inline-block;
+		min-width: 350px;
+	}
 
-  .credit {
-    float: right;
-  }
+	.credit {
+		float: right;
+	}
 
 
-  @media (max-width: 500px) {
-    .credit {
-      float: none;
-    }
-    .addthis_toolbox {
-      display: block;
-      min-width: 0px;
-    }
-  }
+	@media (max-width: 500px) {
+		.credit {
+			float: none;
+		}
+		.addthis_toolbox {
+			display: block;
+			min-width: 0px;
+		}
+	}
 }
 
 /* Find Stuff */
 $padding: 1em;
 #animal {
-  display: none;
-  position: absolute;
-  z-index: 2;
+	display: none;
+	position: absolute;
+	z-index: 2;
 }
 
 [id^=modal-], .noscript {
-  display: none;
+	display: none;
 
-  background: #eee;
-  border: 1px solid #ddd;
-  margin: 10%;
-  padding: 2em;
-  position: relative;
+	background: #eee;
+	border: 1px solid #ddd;
+	margin: 10%;
+	padding: 2em;
+	position: relative;
 
-  @media (max-width: 500px) {
-    margin: 5%;
-    text-align: center;
-  }
+	@media (max-width: 500px) {
+		margin: 5%;
+		text-align: center;
+	}
 
-  #quote {
-    opacity: 0.5;
-    text-align: center;
+	#quote {
+		opacity: 0.5;
+		text-align: center;
 
-    position: absolute;
-    left: 24em;
-    top: 1em;
-    right: 1em;
+		position: absolute;
+		left: 24em;
+		top: 1em;
+		right: 1em;
 
-    &:before, &:after {
-      content: '"';
-    }
+		&:before, &:after {
+			content: '"';
+		}
 
-    transform: rotate(8deg);
+		transform: rotate(8deg);
 
-    @media (max-width: 800px) {
-      display: none;
-    }
-    @media (min-width: 1000px) {
-      left: auto;
-      max-width: 26em;
-    }
-  }
+		@media (max-width: 800px) {
+			display: none;
+		}
+		@media (min-width: 1000px) {
+			left: auto;
+			max-width: 26em;
+		}
+	}
 
-  .beer {
-    margin-top: 0;
-    position: absolute;
-    top: 1em;
-    right: 1em;
-    @media (max-width: 600px) {
-      display: none;
-    }
-  }
+	.beer {
+		margin-top: 0;
+		position: absolute;
+		top: 1em;
+		right: 1em;
+		@media (max-width: 600px) {
+			display: none;
+		}
+	}
 }
 
 .noscript {
-  display: block;
-  font-size: 2em;
+	display: block;
+	font-size: 2em;
 }
 
 #stats {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
 
-  z-index: 1;
+	z-index: 1;
 
-  @media (max-width: 570px) {
-    .modalOpen & {
-      display: none;
-    }
-  }
+	@media (max-width: 570px) {
+		.modalOpen & {
+			display: none;
+		}
+	}
 }
 
 #loader {
-  &.loading {
-    background: white;
-    border: 1px solid #ccc;
-    height: 20px;
+	&.loading {
+		background: white;
+		border: 1px solid #ccc;
+		height: 20px;
 
-    #loader-inner {
-      background: #bbb;
-      height: 100%;
-    }
-  }
+		#loader-inner {
+			background: #bbb;
+			height: 100%;
+		}
+	}
 }
 
 .note {
-  font-size: 0.8em;
-  margin: 2em 0 0;
+	font-size: 0.8em;
+	margin: 2em 0 0;
 }
