@@ -10,7 +10,6 @@ var find = (function() {
 			},
 			elm: null
 		},
-		enablePromo: false,
 		settings: {
 			tone: 0,
 			requiredDistance: 40,
@@ -46,7 +45,6 @@ var find = (function() {
 			points: 0,
 			total: undefined,
 			startedAt: null,
-			seenPromo: 1,
 			lastSecondsTaken: null
 		},
 		quotes: [
@@ -139,11 +137,6 @@ var find = (function() {
 				f.addPoint(win);
 				f.moo(function() {
 					f.modal.open('congratulations');
-
-					if (f.enablePromo && !f.stats.seenPromo && find.stats.wins > 1 && promo) {
-						if (promo.start())
-							f.stats.seenPromo += 1;
-					}
 				});
 			}
 			f.updateCursor();
