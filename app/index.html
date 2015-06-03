@@ -30,6 +30,7 @@
 	<script src="/bower_components/webcomponentsjs/webcomponents.min.js"></script>
 	<link rel="import" href="/elements/cow-animal.html">
 	<link rel="import" href="/elements/cow-quote.html">
+	<link rel="import" href="/elements/cow-selector.html">
 	<link rel="import" href="/elements/cow-stats.html">
 
 </head>
@@ -61,37 +62,8 @@
 		<p>You found one!</p>
 		<p>&nbsp;</p>
 		<p><label><input type="checkbox" data-expertMode>Expert Mode <span class="grey">(your cursor won't change when you hover over the cow)</span></label></p>
-		<div data-donated="0">
-			<div data-points-max="4">
-				<p><label>
-					Find a
-					<select data-animal>
-						<option value="cow" selected>Cow</option>
-					</select>
-					<small>Get to <strong>five points</strong> to unlock another animal!</small>
-				</label></p>
-			</div>
-			<div data-points-min="5">
-				<p><label>
-					Find a
-					<select data-animal>
-						<option value="cow" selected>Cow</option>
-						<option value="goat">Goat</option>
-					</select>
-					<small><strong>Congratulations! You have unlocked the goat!</strong></small>
-				</label></p>
-			</div>
-		</div>
-		<div data-donated="1">
-			<p><label>
-				Find a
-				<select data-animal>
-					<option value="cow" selected>Cow</option>
-					<option value="goat">Goat</option>
-					<option value="fox">Fox</option>
-				</select>
-			</label></p>
-		</div>
+
+		<cow-selector></cow-selector>
 		<button onclick="find.gameStart();">Find Another One</button>
 		<a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Ffindtheinvisiblecow.com" target="_blank" class="button secondary" onclick="find.track2('Social', Share - Facebook');">Share on Facebook</a>
 		<button class="tertiary beer" onclick="find.modal.open('beer');find.track2('Donate', 'ModalOpen');">Unlock the Fox</button>

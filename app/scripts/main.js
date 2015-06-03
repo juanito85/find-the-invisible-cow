@@ -19,19 +19,25 @@ var find = (function() {
 		},
 		animals: {
 			cow: {
+				name: 'Cow',
 				duration: 0.3,
 				levels: 11,
-				mooDelay: 1200
+				mooDelay: 1200,
+				unlocked: true
 			},
 			goat: {
+				name: 'Goat',
 				duration: 0.35,
 				levels: 10,
-				mooDelay: 1000
+				mooDelay: 1000,
+				unlocked: false
 			},
 			fox: {
+				name: 'Fox',
 				duration: 0.3,
 				levels: 10,
-				mooDelay: 400
+				mooDelay: 400,
+				unlocked: false
 			}
 		},
 		stats: {
@@ -89,6 +95,9 @@ var find = (function() {
 			f.stats.elm = document.getElementById('stats');
 			f.updateTotal();
 			f.updateStats();
+
+			// Fire init event
+			document.dispatchEvent(new Event('cow.init'));
 		},
 		gameStart: function() {
 			// Run after 16 seconds to prevent animal from being found immediately
@@ -132,6 +141,8 @@ var find = (function() {
 
 			f.settings.animal = animal;
 			f.animal.elm.type = animal;
+
+			document.dispatchEvent(new Event('cow.changeAnimal'));
 		},
 		addPoint: function(win) {
 			f.stats.points++;
@@ -220,6 +231,22 @@ var find = (function() {
 			// f.getScript('/api/getFound?callback=find.setTotal');
 			f.makeTotalRequest();
 		},
+		updateUnlocked: function() {
+			var changed = false;
+
+			if (f.stats.points >= 5 && !f.animals.goat.unlocked) {
+				changed = true;
+				f.animals.goat.unlocked = true;
+			}
+			if (f.stats.donated && !f.animals.fox.unlocked) {
+				changed = true;
+				f.animals.fox.unlocked = true;
+			}
+
+			if (changed) {
+				document.dispatchEvent(new Event('cow.unlockAnimal'));
+			}
+		},
 		makeTotalRequest: function(increment) {
 			var type = 'GET',
 				data;
@@ -279,6 +306,8 @@ var find = (function() {
 			localStorage['f-stats-points'] = f.stats.points;
 			localStorage['f-stats-seenPromo'] = f.stats.seenPromo;
 			localStorage['f-stats-wins'] = f.stats.wins;
+
+			f.updateUnlocked();
 		},
 		load: function() {
 			if (!localStorage)
@@ -288,6 +317,8 @@ var find = (function() {
 			f.stats.points = Number(localStorage['f-stats-points']) || 0;
 			f.stats.seenPromo = Number(localStorage['f-stats-seenPromo']) || 0;
 			f.stats.wins = Number(localStorage['f-stats-wins']) || 0;
+
+			f.updateUnlocked();
 		},
 		time: function() {
 			return (new Date()).getTime();
@@ -454,7 +485,6 @@ var find = (function() {
 				if (!elm)
 					return false;
 				f.modal.close();
-				f.modal.checkPoints(elm);
 				elm.style.display = 'block';
 				document.body.classList.add('modalOpen');
 				return true;
@@ -466,44 +496,14 @@ var find = (function() {
 				}
 				document.body.classList.remove('modalOpen');
 				return true;
-			},
-			checkPoints: function(modal) {
-				var p = f.stats.points;
-
-				var elms = modal.querySelectorAll('[data-points-equal], [data-points-max], [data-points-min]'),
-					donatedElms = modal.querySelectorAll('[data-donated]');
-
-				for (var i = elms.length - 1; i >= 0; i--) {
-					var elm = elms[i],
-						max = elm.getAttribute('data-points-max'),
-						equal = elm.getAttribute('data-points-equal'),
-						min = elm.getAttribute('data-points-min');
-
-					if ((max !== null && p <= max) || (equal !== null && p == equal) || (min !== null && p >= min)) {
-						elm.style.display = null;
-					} else {
-						elm.style.display = 'none';
-					}
-				};
-
-				for (var i = donatedElms.length - 1; i >= 0; i--) {
-					var elm = donatedElms[i],
-						donated = !!parseInt(elm.getAttribute('data-donated'));
-
-					if (f.stats.donated == donated) {
-						elm.style.display = null;
-					} else {
-						elm.style.display = 'none';
-					}
-				};
 			}
 		}
 	}
 
-	f.init();
-
 	return f;
 })();
+
+find.init();
 
 function createCORSRequest(method, url) {
 	var xhr = new XMLHttpRequest();

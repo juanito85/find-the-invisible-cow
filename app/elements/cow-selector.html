@@ -1,0 +1,71 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+
+<dom-module id="cow-selector">
+<template>
+	<p>
+		<label>
+			Find a
+			<select id="select" on-change="refreshSelection">
+				<template is="dom-repeat" items="{{animals}}" filter="isUnlocked">
+					<option value="{{item.key}}">{{item.name}}</option>
+				</template>
+			</select>
+			<template is="dom-if" if="{{!multipleItemsUnlocked}}">
+				<small>
+					Get to <strong>five points</strong> to unlock another animal!
+				</small>
+			</template>
+			<template is="dom-if" if="{{multipleItemsUnlocked}}">
+				<small>
+					<strong>Congratulations!</strong> You have unlocked the goat!
+				</small>
+			</template>
+		</label>
+	</p>
+</template>
+</dom-module>
+
+<script>
+	Polymer({
+		is: "cow-selector",
+		ready: function() {
+			var refresh = this.refreshAnimals.bind(this);
+			document.addEventListener('cow.init'        , refresh);
+			document.addEventListener('cow.changeAnimal', refresh);
+			document.addEventListener('cow.unlockAnimal', refresh);
+		},
+		properties: {
+			multipleItemsUnlocked: {
+				type: Boolean,
+				computed: 'refreshMultipleItemsUnlocked(animals.splices)'
+			},
+			animals: {
+				type: Array,
+				value: function() {
+					return [];
+				}
+			}
+		},
+		refreshAnimals: function() {
+			this.splice('animals', 0, this.animals.length);
+			for (key in find.animals) {
+				find.animals[key].key = key;
+				this.push('animals', find.animals[key]);
+			}
+
+			this.$.select.value = find.settings.animal;
+		},
+		refreshSelection: function() {
+			var selected = this.$.select.value;
+			find.setAnimal(selected);
+		},
+		refreshMultipleItemsUnlocked: function(animals) {
+			return this.animals.filter(function(i) {
+				return i.unlocked == true;
+			}).length > 1;
+		},
+		isUnlocked: function(animal) {
+			return animal.unlocked;
+		}
+	});
+</script>
