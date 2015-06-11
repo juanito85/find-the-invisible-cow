@@ -30,13 +30,15 @@
 	<script src="/bower_components/webcomponentsjs/webcomponents.min.js"></script>
 	<link rel="import" href="/elements/cow-animal.html">
 	<link rel="import" href="/elements/cow-donate.html">
+	<link rel="import" href="/elements/cow-expert.html">
 	<link rel="import" href="/elements/cow-quote.html">
 	<link rel="import" href="/elements/cow-selector.html">
 	<link rel="import" href="/elements/cow-share.html">
 	<link rel="import" href="/elements/cow-start.html">
 	<link rel="import" href="/elements/cow-stats.html">
-	<link rel="import" href="/bower_components/paper-dialog/paper-dialog.html">
 	<link rel="import" href="/bower_components/paper-button/paper-button.html">
+	<link rel="import" href="/bower_components/paper-dialog/paper-dialog.html">
+	<link rel="import" href="/bower_components/paper-toggle-button/paper-toggle-button.html">
 	<!--<link rel="import" href="/bower_components/neon-animation/neon-animation.html">-->
 
 </head>
@@ -46,7 +48,7 @@
 
 	<cow-stats id="stats"></cow-stats>
 
-	<paper-dialog id="modal-welcome">
+	<paper-dialog id="modal-welcome" no-cancel-on-outside-click>
 		<h1>Find the Invisible&nbsp;Cow</h1>
 		<cow-quote id="quote"></cow-quote>
 		<p>Move your cursor around to find the cow. It's hiding behind the shouting.</p>
@@ -57,17 +59,17 @@
 		<p class="note">If you do not hear anything, it's possible that your browser does not support the Web Audio API. Currently supported browsers are <a href="http://google.com/chrome" target="_blank">Chrome 10+</a>, <a href="http://www.mozilla.org/en-US/firefox/new/" target="_blank">Firefox 25+</a>, <a href="http://www.opera.com/" target="_blank">Opera 15+</a>, and <a href="http://www.apple.com/au/safari/" target="_blank">Safari 6+</a>.</p>
 	</paper-dialog>
 
-	<paper-dialog id="modal-no-audio">
+	<paper-dialog id="modal-no-audio" no-cancel-on-outside-click>
 		<h1>This is a web experiment</h1>
 		<p>Sorry, your browser does not support the Web Audio API, which is an integral part of this experiment.</p>
 		<p>Currently supported browsers are <a href="http://google.com/chrome" target="_blank">Chrome 10+</a>, <a href="http://www.mozilla.org/en-US/firefox/new/" target="_blank">Firefox 25+</a>, <a href="http://www.opera.com/" target="_blank">Opera 15+</a>, and <a href="http://www.apple.com/au/safari/" target="_blank">Safari 6+</a>.</p>
 	</paper-dialog>
 
-	<paper-dialog id="modal-congratulations">
+	<paper-dialog id="modal-congratulations" no-cancel-on-outside-click>
 		<h1>Congratulations</h1>
 		<p>You found one!</p>
 		<p>&nbsp;</p>
-		<p><label><input type="checkbox" data-expertMode>Expert Mode <span class="grey">(your cursor won't change when you hover over the cow)</span></label></p>
+		<p><cow-expert></cow-expert></p>
 
 		<cow-selector></cow-selector>
 
@@ -78,7 +80,7 @@
 		</p>
 	</paper-dialog>
 
-	<paper-dialog id="modal-beer">
+	<paper-dialog id="modal-beer" no-cancel-on-outside-click>
 		<h1>Buy me a beer <small>&amp; unlock the fox</small></h1>
 		<p>G'day Cow-Finders.</p>
 		<p>I'm <a href="http://scripti.st" target="_blank">Michael Berman</a>, an Aussie web dude, and I make stupid shit like this to please internet-folk like you.</p>

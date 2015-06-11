@@ -67,9 +67,6 @@ var find = (function() {
 			// Add event listeners
 			window.addEventListener('mousemove', f.update);
 			window.addEventListener('click', f.click);
-			document.querySelector('[data-expertMode]').addEventListener('change', function() {
-				f.settings.expertMode = this.checked;
-			});
 			var animalSelectors = document.querySelectorAll('[data-animal]');
 
 			for (var i = animalSelectors.length - 1; i >= 0; i--) {

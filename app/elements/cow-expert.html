@@ -1,0 +1,39 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+
+<dom-module id="cow-expert">
+<style>
+	:host {
+		display: block;
+	}
+	.gray {
+		font-size: 0.8em;
+		opacity: 0.8;
+	}
+</style>
+<template>
+	<style is="custom-style">
+		* {
+		--paper-toggle-button-checked-bar-color: #c7d9e8;
+		--paper-toggle-button-checked-button-color: #4682B4;
+		--paper-toggle-button-checked-ink-color: #c7d9e8;
+		}
+	</style>
+	<paper-toggle-button id="checkbox"></paper-toggle-button>
+	Expert Mode <span class="gray">(your cursor won't change when you hover over the cow)</span>
+</template>
+</dom-module>
+
+<script>
+	Polymer({
+		is: "cow-expert",
+		ready: function() {
+			document.addEventListener('cow.init', this.init.bind(this));
+		},
+		init: function() {
+			this.$.checkbox.checked = find.settings.expertMode;
+			this.$.checkbox.addEventListener('change', function() {
+				find.settings.expertMode = this.checked;
+			});
+		}
+	});
+</script>
