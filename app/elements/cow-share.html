@@ -1,0 +1,29 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+
+<dom-module id="cow-share">
+<style>
+	:host {
+		text-decoration: none;
+	}
+</style>
+<template>
+	<paper-button class="button secondary" onclick="find.track2('Social', Share - Facebook');">Share on Facebook</paper-button>
+</template>
+</dom-module>
+
+<script>
+	Polymer({
+		is: "cow-share",
+		extends: 'a',
+		ready: function() {
+			this.href = 'https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Ffindtheinvisiblecow.com';
+			this.target = '_blank';
+			this.addEventListener('click', function() {
+				find.track2('Social', 'Share - Facebook');
+			}.bind(this));
+		}
+	});
+</script>
+
+
+

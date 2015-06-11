@@ -2,9 +2,12 @@
 
 <dom-module id="cow-donate">
 <style>
+	:host {
+		text-decoration: none;
+	}
 </style>
 <template>
-	Donate $<span>{{amount}}</span>
+	<paper-button class="secondary">Donate $<span>{{amount}}</span></paper-button>
 </template>
 </dom-module>
 

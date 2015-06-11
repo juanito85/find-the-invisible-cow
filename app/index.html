@@ -32,8 +32,12 @@
 	<link rel="import" href="/elements/cow-donate.html">
 	<link rel="import" href="/elements/cow-quote.html">
 	<link rel="import" href="/elements/cow-selector.html">
+	<link rel="import" href="/elements/cow-share.html">
 	<link rel="import" href="/elements/cow-start.html">
 	<link rel="import" href="/elements/cow-stats.html">
+	<link rel="import" href="/bower_components/paper-dialog/paper-dialog.html">
+	<link rel="import" href="/bower_components/paper-button/paper-button.html">
+	<!--<link rel="import" href="/bower_components/neon-animation/neon-animation.html">-->
 
 </head>
 <body>
@@ -42,36 +46,39 @@
 
 	<cow-stats id="stats"></cow-stats>
 
-	<div id="modal-welcome">
+	<paper-dialog id="modal-welcome">
 		<h1>Find the Invisible&nbsp;Cow</h1>
 		<cow-quote id="quote"></cow-quote>
 		<p>Move your cursor around to find the cow. It's hiding behind the shouting.</p>
-		<p class="important">Make sure you turn your audio on before playing.</p>
+		<p><span class="important">Make sure you turn your audio on before playing.</span></p>
 
-		<div id="loader" class="loading"></div>
+		<div><div id="loader" class="loading"></div></div>
 
 		<p class="note">If you do not hear anything, it's possible that your browser does not support the Web Audio API. Currently supported browsers are <a href="http://google.com/chrome" target="_blank">Chrome 10+</a>, <a href="http://www.mozilla.org/en-US/firefox/new/" target="_blank">Firefox 25+</a>, <a href="http://www.opera.com/" target="_blank">Opera 15+</a>, and <a href="http://www.apple.com/au/safari/" target="_blank">Safari 6+</a>.</p>
-	</div>
+	</paper-dialog>
 
-	<div id="modal-no-audio">
+	<paper-dialog id="modal-no-audio">
 		<h1>This is a web experiment</h1>
 		<p>Sorry, your browser does not support the Web Audio API, which is an integral part of this experiment.</p>
 		<p>Currently supported browsers are <a href="http://google.com/chrome" target="_blank">Chrome 10+</a>, <a href="http://www.mozilla.org/en-US/firefox/new/" target="_blank">Firefox 25+</a>, <a href="http://www.opera.com/" target="_blank">Opera 15+</a>, and <a href="http://www.apple.com/au/safari/" target="_blank">Safari 6+</a>.</p>
-	</div>
+	</paper-dialog>
 
-	<div id="modal-congratulations">
+	<paper-dialog id="modal-congratulations">
 		<h1>Congratulations</h1>
 		<p>You found one!</p>
 		<p>&nbsp;</p>
 		<p><label><input type="checkbox" data-expertMode>Expert Mode <span class="grey">(your cursor won't change when you hover over the cow)</span></label></p>
 
 		<cow-selector></cow-selector>
-		<button is="cow-start" text="Find Another One"></button>
-		<a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Ffindtheinvisiblecow.com" target="_blank" class="button secondary" onclick="find.track2('Social', Share - Facebook');">Share on Facebook</a>
-		<button class="tertiary beer" onclick="find.modal.open('beer');find.track2('Donate', 'ModalOpen');">Unlock the Fox</button>
-	</div>
 
-	<div id="modal-beer">
+		<p>
+			<cow-start text="Find Another One"></cow-start>
+			<a is="cow-share"></a>
+			<paper-button class="tertiary beer" onclick="find.modal.open('beer');find.track2('Donate', 'ModalOpen');">Unlock the Fox</paper-button>
+		</p>
+	</paper-dialog>
+
+	<paper-dialog id="modal-beer">
 		<h1>Buy me a beer <small>&amp; unlock the fox</small></h1>
 		<p>G'day Cow-Finders.</p>
 		<p>I'm <a href="http://scripti.st" target="_blank">Michael Berman</a>, an Aussie web dude, and I make stupid shit like this to please internet-folk like you.</p>
@@ -79,11 +86,13 @@
 		<p>&nbsp;</p>
 		<p>As an added bonus, donating will automatically unlock one more animal - <strong>the fox</strong>.</p>
 
-		<a is="cow-donate" amount="2" class="button"></a>
-		<a is="cow-donate" amount="5" class="button"></a>
-		<a is="cow-donate" amount="20" class="button"></a>
-		<button is="cow-start" text="Find Another Cow" class="secondary"></button>
-	</div>
+		<p>
+			<a is="cow-donate" amount="2"></a>
+			<a is="cow-donate" amount="5"></a>
+			<a is="cow-donate" amount="20"></a>
+			<cow-start text="Find Another Cow" class="secondary"></cow-start>
+		</p>
+	</paper-dialog>
 
 	<div id="footer">
 		<div class="credit">

@@ -89,7 +89,9 @@ var find = (function() {
 
 			// Open welcome modal
 			f.modal.open('welcome');
-			f.audio.showLoader('loader', '<button is="cow-start"></button>');
+			var loader = f.audio.showLoader('loader', function() {
+				loader.innerHTML = '<cow-start>Start Game</cow-start>';
+			});
 
 			// Update stats
 			f.stats.elm = document.getElementById('stats');
@@ -415,7 +417,7 @@ var find = (function() {
 				}
 				request.send();
 			},
-			showLoader: function(id, htmlOnceComplete) {
+			showLoader: function(id, callback) {
 				var loader = document.getElementById(id),
 					refreshInterval = 100,
 					inner, setLoader, interval;
@@ -431,10 +433,11 @@ var find = (function() {
 					if (percent == 100) {
 						clearInterval(interval);
 						loader.classList.remove('loading');
-						loader.innerHTML = htmlOnceComplete;
+						typeof callback == 'function' && callback();
 					}
 				};
 				interval = setInterval(setLoader, refreshInterval);
+				return loader;
 			},
 			playLevel: function(level, tone) {
 				if (tone) {
@@ -485,14 +488,14 @@ var find = (function() {
 				if (!elm)
 					return false;
 				f.modal.close();
-				elm.style.display = 'block';
+				elm.open();
 				document.body.classList.add('modalOpen');
 				return true;
 			},
 			close: function() {
 				var elms = document.querySelectorAll('[id^=modal-]');
 				for (var i = 0; i < elms.length; i++) {
-					elms[i].style.display = 'none';
+					elms[i].close && elms[i].close();
 				}
 				document.body.classList.remove('modalOpen');
 				return true;
